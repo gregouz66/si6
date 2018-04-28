@@ -1,0 +1,32 @@
+.mainlogin {
+    text-align: center;
+}
+
+.formlogin {
+    display: initial;
+    width: 50%;
+}
+
+.formlogin2 {
+    width: 25%;
+    left: 38%;
+}
+
+.buttonlogin {
+    background-color: #BDB76B;
+    border-color: #BDB76B;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    cursor:pointer;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #798933;
+    border-color: #798933;
+}
+
+li {
+  color: #B22222;
+  padding-top: 1%;
+}

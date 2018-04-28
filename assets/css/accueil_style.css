@@ -1,0 +1,134 @@
+body{
+    margin: 0px;
+}
+
+header, span{
+    font-weight: bold;
+
+    font-size: 0.85em;
+}
+
+.nav_principal{
+    font-size: 1.1em;
+}
+
+.recherche{
+    border-radius: 3px;
+    min-height: 30px;
+    font-size: 16px;
+    padding: 6px 8px;
+    line-height: 20px;
+    display: table-cell;
+    padding-top: 0;
+    padding-bottom: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    background-color: #fff;
+    height: 12px;
+}
+
+ul li{
+    padding: 10px;
+    margin: 10px;
+}
+
+.menu_1{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin-left: 30px;
+}
+
+.header_1{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px 10px 0px;
+    background: #c4c4c4;
+}
+
+#block_page{
+    margin: 20px 0px 0px 0px;
+    box-shadow: 0 20px 15px -15px rgba(0,0,0,.35) inset;
+    background-color: #eceeef;
+    padding: 20px;
+}
+#nav_2{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-primary{
+    background-color: #BDB76B;
+    border-color: #BDB76B;
+    margin-right: 20px;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #798933;
+    border-color: #798933;
+}
+
+.logo{
+    width: 79px;
+    height: auto;
+}
+
+.espace_profile{
+    background-color: rgb(221, 221, 221);
+    width: auto;
+    margin: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.espace_profile div{
+    padding: 12px;
+}
+
+.block_article{
+    background-color: white;
+    padding: 12px;
+    box-shadow: 0 20px 15px -15px rgba(0,0,0,.35);
+    height: 400px;
+}
+
+.block_information {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(92, 142, 203);
+    height: 72px;
+    margin: 20px 20px 0px 20px;
+    position: relative;
+}
+
+.icon_attention{
+    position: absolute;
+    left: 1px;
+}
+
+.text_error{
+    text-align: center;
+    color: white;
+    width: 75%;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.copyright{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #BDB76B;
+    font-size: 0.75em;
+    padding: 0px 20px 0px 20px;
+}
+
+.content_note{
+    position: relative;
+}
