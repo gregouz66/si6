@@ -1,9 +1,18 @@
 <?php include('inc/admin/header.php'); ?>
 
 <?php
+if(isset($_GET['type']) AND isset($_GET['num'])){
+if(!empty($_GET['type'] AND $_GET['num'])){
 
-$req = $bdd->prepare('SELECT * FROM machines ');
-$req->execute();
+$type = $_GET['type'];
+$num = $_GET['num'];
+$complet_salle = $type.$num;
+
+$req = $bdd->prepare('SELECT * FROM machines WHERE complet_salle = ?');
+$req->execute(array($complet_salle));
+$ifresult = $req->rowCount();
+
+if($ifresult != 0){
 // On récupère le resultat
 $result = $req->fetchAll();
 ?>
@@ -23,9 +32,9 @@ $result = $req->fetchAll();
             // on affiche les titres
             echo '<tr>';
 
-            echo '<th>ID</th>';
+            echo '<th>IPV4</th>';
 
-            echo '<th>IP</th>';
+            echo '<th>IPV6</th>';
 
             echo '<th>Adresse MAC</th>';
 
@@ -33,9 +42,7 @@ $result = $req->fetchAll();
 
             echo '<th>Host name</th>';
 
-            echo '<th>Libellé de la machine</th>';
-
-            echo '<th>ID de la salle</th>';
+            echo '<th>Salle</th>';
 
 
         // lecture et affichage des résultats sur 2 colonnes, 1 résultat par ligne.
@@ -44,9 +51,9 @@ $result = $req->fetchAll();
 
             echo '<tr>';
 
-            echo '<td>'.$row["id_machine"].'</td>';
+            echo '<td>'.$row["ipv4_machine"].'</td>';
 
-            echo '<td>'.$row["ip_machine"].'</td>';
+            echo '<td>'.$row["ipv6_machine"].'</td>';
 
             echo '<td>'.$row["mac_machine"].'</td>';
 
@@ -54,9 +61,7 @@ $result = $req->fetchAll();
 
             echo '<td>'.$row["host_name_machine"].'</td>';
 
-            echo '<td>'.$row["libelle_machine"].'</td>';
-
-            echo '<td>'.$row["id_salle"].'</td>';
+            echo '<td>'.$row["complet_salle"].'</td>';
 
             echo '</tr>';
 
@@ -69,5 +74,13 @@ $result = $req->fetchAll();
     ?>
   </div>
 </main>
+
+<?php } else {
+  include('pageintrouvable.php');
+} } else {
+  include('pageintrouvable.php');
+} } else {
+  include('pageintrouvable.php');
+}?>
 
 <?php include('inc/admin/footer.php'); ?>

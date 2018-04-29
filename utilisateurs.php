@@ -1,7 +1,6 @@
 <?php include('inc/admin/header.php'); ?>
 
 <?php
-$active_utilisateurs = 'active';
 
 require ('inc/admin/ajout.php');
 

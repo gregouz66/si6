@@ -1,4 +1,3 @@
-<?php include ('inc/mailconfig.php'); ?>
 <?php require ('inc/bdd.php'); ?>
 
 <?php
