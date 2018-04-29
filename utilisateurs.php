@@ -1,35 +1,29 @@
+<?php include('inc/admin/header.php'); ?>
+
 <?php
+$active_utilisateurs = 'active';
+
 require ('inc/admin/ajout.php');
 
-  //Lire la liste d'utilisateur
-  $req = $bdd->prepare('SELECT * FROM utilisateurs ');
-  $req->execute();
-  // On récupère le resultat
-  $result = $req->fetchAll();
-?>
+//Suppression d'utilisateur
+if(isset($_GET['top'])){
+  $top = htmlentities(trim($_GET['top']));
 
-<!-- Supression d'utilisateur -->
-<?php if(isset($_GET['top'])){
-			  $top = htmlentities(trim($_GET['top']));
+  $suppbot = $bdd->prepare("SELECT * FROM utilisateurs WHERE id_utilisateur = ?");
+  $suppbot->execute(array($top));
+  $result = $suppbot->fetch();
+  $emailsuppr = $result['adresse_email'];
 
-        $suppbot = $bdd->prepare("SELECT * FROM utilisateurs WHERE id_utilisateur = ?");
-        $suppbot->execute(array($top));
-        $result = $suppbot->fetch();
-        $emailsuppr = $result['adresse_email'];
+  $supptop = $bdd->prepare("DELETE FROM utilisateurs WHERE id_utilisateur = ? LIMIT 1");
+  $supptop->execute(array($top));
+  $errors1[] = 'Utilisateur supprimé !';
+}
 
-			  $supptop = $bdd->prepare("DELETE FROM utilisateurs WHERE id_utilisateur = ? LIMIT 1");
-			  $supptop->execute(array($top));
-        header('Location: localhost/si6/admin.php?selector=2&suppr=1');
-
-
-		  }
-		  ?>
-
-<!--Ajout finit ou erreur-->
-<?php
-if (isset($_GET['sent']) === true) {
-  include ('ajoutsent.php');
-} else {
+//Lire la liste d'utilisateur
+$req = $bdd->prepare('SELECT * FROM utilisateurs ');
+$req->execute();
+// On récupère le resultat
+$result = $req->fetchAll();
 ?>
 
 <!-- Partie HTML -->
@@ -46,6 +40,16 @@ if (isset($_GET['sent']) === true) {
         }
         echo '</ul>';
     }
+    if (empty($errors1) === false) {
+       echo '<ul>';
+       foreach ($errors1 as $error1) {
+           echo "<div class='alert alert-success alert-dismissible fade show'> $error1
+           <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+             <span aria-hidden='true'>&times;</span>
+           </div>";
+       }
+       echo '</ul>';
+   }
     ?>
 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -98,7 +102,7 @@ if (isset($_GET['sent']) === true) {
 
           echo '<td>'.$row["administrateur"].'</td>';
 
-          echo '<td><a href="admin.php?selector=2&top='. $row["id_utilisateur"].'"><button type="submit" class="btn btn-danger btnsuppr">Suppr</button></a></td>';
+          echo '<td><a href="utilisateurs.php?top='. $row["id_utilisateur"].'"><button type="submit" class="btn btn-danger btnsuppr">Suppr</button></a></td>';
 
           echo '</tr>'."\n";
 
@@ -156,4 +160,4 @@ if (isset($_GET['sent']) === true) {
 
 </main>
 
-<?php } ?>
+<?php include('inc/admin/footer.php'); ?>

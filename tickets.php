@@ -1,5 +1,6 @@
-<?php
+<?php include('inc/admin/header.php'); ?>
 
+<?php
 $req = $bdd->prepare('SELECT * FROM machines ');
 $req->execute();
 // On récupère le resultat
@@ -8,7 +9,7 @@ $result = $req->fetchAll();
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">Gestion des machines</h1>
+    <h1 class="h2">Gestion des tickets</h1>
   </div>
 
 
@@ -67,3 +68,5 @@ $result = $req->fetchAll();
     ?>
   </div>
 </main>
+
+<?php include('inc/admin/footer.php'); ?>

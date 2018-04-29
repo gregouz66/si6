@@ -45,8 +45,7 @@ $req->execute(array(
   	'email' => $email,
   	'admin' => $grade
 ));
-
-header('Location: localhost/si6/admin.php?selector=2&ajout=1');
+$errors1[] = 'Utilisateur ajouté !';
 }
 }
 ?>

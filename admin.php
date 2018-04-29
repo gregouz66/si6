@@ -1,114 +1,88 @@
-<?php require ('inc/bdd.php'); ?>
-<?php require ('inc/admin/incadmin.php'); ?>
+<?php include('inc/admin/header.php'); ?>
 
-<?php
-  if(!isset($_SESSION['id_utilisateur'])) {
-    header('Location: index.php');
-    exit;
-  }
-?>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Statistiques des tickets</h1>
+  </div>
 
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="">
+  <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
 
-    <title>Administration - GLPI M2018</title>
+  <h2>Tableau x</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Header</th>
+          <th>Header</th>
+          <th>Header</th>
+          <th>Header</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1,001</td>
+          <td>Lorem</td>
+          <td>ipsum</td>
+          <td>dolor</td>
+          <td>sit</td>
+        </tr>
+        <tr>
+          <td>1,002</td>
+          <td>amet</td>
+          <td>consectetur</td>
+          <td>adipiscing</td>
+          <td>elit</td>
+        </tr>
+        <tr>
+          <td>1,003</td>
+          <td>Integer</td>
+          <td>nec</td>
+          <td>odio</td>
+          <td>Praesent</td>
+        </tr>
+        <tr>
+          <td>1,003</td>
+          <td>libero</td>
+          <td>Sed</td>
+          <td>cursus</td>
+          <td>ante</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+      datasets: [{
+        data: [104, 96, 210, 153, 193, 147, 107],
+        lineTension: 0,
+        backgroundColor: 'transparent',
+        borderColor: '#007bff',
+        borderWidth: 4,
+        pointBackgroundColor: '#007bff'
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+      legend: {
+        display: false,
+      }
+    }
+  });
+</script>
 
-    <!-- Custom styles for this template -->
-    <link href="assets/css/dashboard.css" rel="stylesheet">
-  </head>
-
-  <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="admin.php">ADMINISTRATION</a>
-    </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-
-              <?php
-                    switch ($selector) {
-                      case '1':
-                      include ('inc/admin/activenav/active1.php');
-                      break;
-
-                      case '2':
-                      include ('inc/admin/activenav/active2.php');
-                      break;
-
-                      case '3':
-                      include ('inc/admin/activenav/active3.php');
-                      break;
-
-                      case '4':
-                      include ('inc/admin/activenav/active4.php');
-                      break;
-
-                      default:
-                      include ('inc/admin/activenav/active1.php');
-                      break;
-                    }
-                  ?>
-
-
-            </ul>
-
-          </div>
-        </nav>
-
-        <?php
-              switch ($selector) {
-                case '1':
-                include ('inc/admin/dashboard.php');
-                break;
-
-                case '2':
-                include ('inc/admin/utilisateurs.php');
-                break;
-
-                case '3':
-                include ('inc/admin/machines.php');
-                break;
-
-                case '4':
-                include ('inc/admin/tickets.php');
-                break;
-
-                default:
-                include ('inc/admin/dashboard.php');
-                break;
-              }
-            ?>
-
-
-      </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
-
-
-  </body>
-</html>
+<?php include('inc/admin/footer.php'); ?>
